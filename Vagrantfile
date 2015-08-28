@@ -9,13 +9,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "hashicorp/precise64"
   config.vm.hostname = "vagrant"
+
+  # Database exposure
   config.vm.network "forwarded_port", guest: 5432, host: 5432
 
-  config.vm.provision :shell, :path => "server-env/upgrade_puppet.sh"
+  # Proxy exposure
+  config.vm.network "forwarded_port", guest: 8080, host: 18080
+
+  config.vm.provision :shell, :path => "server/upgrade_puppet.sh"
   config.vm.provision "puppet" do |puppet|
-    puppet.manifests_path = "server-env/manifests"
-    puppet.module_path = "server-env/modules"
+    puppet.manifests_path = "server/manifests"
+    puppet.module_path = "server/modules"
     puppet.manifest_file  = "site.pp"
+    puppet.options << '--fileserverconfig /vagrant/server/filesserver.conf'
   end
 
 end

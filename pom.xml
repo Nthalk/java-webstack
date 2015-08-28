@@ -14,16 +14,16 @@
         <configuration>
           <webapps>
             <webapp>
-              <groupId>${groupId}</groupId>
-              <artifactId>client-web</artifactId>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>web-client</artifactId>
               <version>${project.version}</version>
               <type>war</type>
               <asWebapp>true</asWebapp>
               <contextPath>app</contextPath>
             </webapp>
             <webapp>
-              <groupId>${groupId}</groupId>
-              <artifactId>server-rest</artifactId>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>rest-service</artifactId>
               <version>${project.version}</version>
               <type>war</type>
               <asWebapp>true</asWebapp>
@@ -36,7 +36,7 @@
   </build>
 
   <modules>
-    <module>server-rest</module>
-    <module>client-web</module>
+    <module>rest-service</module>
+    <module>web-client</module>
   </modules>
 </project>
