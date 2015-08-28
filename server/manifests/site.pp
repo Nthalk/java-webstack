@@ -30,6 +30,7 @@ file { "/etc/nginx/conf.d":
   force   => true,
   purge   => true,
 }
+
 file { "/etc/nginx/nginx.conf":
   notify  => Service["nginx"],
   source  => "puppet:///files/nginx/nginx.conf",
